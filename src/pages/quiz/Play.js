@@ -1,4 +1,4 @@
-function Quiz() {
+function Result() {
   return (
     <main>
       <p>Category: lorem ipsum</p>
@@ -25,4 +25,4 @@ function Quiz() {
   )
 }
 
-export default Quiz
+export default Result

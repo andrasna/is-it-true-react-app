@@ -1,8 +1,8 @@
-import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
-import Quiz from './pages/Quiz'
-import Result from './pages/Result'
+import Quiz from './pages/quiz/Quiz'
+import Play from './pages/quiz/Play'
+import Result from './pages/quiz/Result'
 
 function App() {
   return (
@@ -11,7 +11,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/quiz" element={<Quiz />} />
-          <Route path="/result" element={<Result />} />
+          <Route path="/quiz/play" element={<Play />} />
+          <Route path="/quiz/result" element={<Result />} />
         </Routes>
       </BrowserRouter>
     </div>
