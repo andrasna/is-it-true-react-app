@@ -1,7 +1,8 @@
 html {
+  min-height: 100vh;
   line-height: 1.5;
   font-family: var(--font-family-copy, sans-serif);
-  background: linear-gradient(to right, #fffdfb, #fff2e5);
+  background: linear-gradient(to bottom, #fdfdfd, #fff3f3) no-repeat;
   color: var(--color-copy);
 }
 
