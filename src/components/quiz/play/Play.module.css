@@ -8,16 +8,36 @@
   max-width: var(--width-md);
   padding: clamp(1rem, 10vw, 3rem);
   border-radius: 1.5rem;
-  background: #caf9ff;
-  margin: 2rem auto;
+  background: var(--color-quiz-card);
+  margin: 1rem auto 2rem;
   text-align: center;
   font-size: var(--font-size-3);
+  position: relative;
 }
+
+.question:after {
+  content: '?';
+  position: absolute;
+  bottom: -1rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 2rem;
+  height: 2rem;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+}
+
+/* .decor {
+  font-size: var(--font-size-5);
+  font-weight: bold;
+  pos
+} */
 
 .radios {
   display: flex;
   justify-content: center;
-  gap: clamp(2rem, 10vw, 10rem);
+  gap: clamp(2rem, 10vw, 6rem);
   margin-bottom: 2rem;
   font-size: var(--font-size-5);
 }
