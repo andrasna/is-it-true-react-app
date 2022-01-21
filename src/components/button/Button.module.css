@@ -1,0 +1,14 @@
+.normal {
+  background: blue;
+  padding: 1rem 2rem;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.disabled {
+  background: gray;
+  cursor: not-allowed;
+}
