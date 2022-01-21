@@ -1,12 +1,15 @@
-import { Link } from 'react-router-dom'
+import Link from '../components/link/Link'
+import Wrapper from '../components/layout/Wrapper'
 
 function Home() {
   return (
-    <main>
-      <h1>Welcome Home!</h1>
+    <Wrapper>
+      <main>
+        <h1>Welcome Home!</h1>
 
-      <Link to="quiz">Go to the quiz</Link>
-    </main>
+        <Link to="quiz">Go to the quiz</Link>
+      </main>
+    </Wrapper>
   )
 }
 

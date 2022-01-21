@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import Link from '../link/Link'
 import { quizSettings } from '../../settings.js'
 
 function Intro() {
