@@ -1,3 +1,4 @@
+import { quizSettings } from '../../settings.js'
 import { useOutletContext, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import Button from '../button/Button'
@@ -5,12 +6,11 @@ import Button from '../button/Button'
 function Play() {
   const navigate = useNavigate()
   const [answer, setAnswer] = useState(null)
-  const [numOfQuestions, [questions, setQuestions], [answers, setAnswers]] =
-    useOutletContext()
+  const [[questions, setQuestions], [answers, setAnswers]] = useOutletContext()
 
   useEffect(() => {
     async function fetchQuestions() {
-      const url = `https://opentdb.com/api.php?amount=${numOfQuestions}&type=boolean`
+      const url = `https://opentdb.com/api.php?amount=${quizSettings.numOfQuestions}&type=boolean`
       const response = await fetch(url)
       const { results } = await response.json()
       setQuestions(results)
@@ -20,7 +20,7 @@ function Play() {
   }, [])
 
   useEffect(() => {
-    if (answers.length === numOfQuestions) {
+    if (answers.length === quizSettings.numOfQuestions) {
       navigate('../result')
       return
     }
