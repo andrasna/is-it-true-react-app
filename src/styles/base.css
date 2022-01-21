@@ -1,0 +1,11 @@
+html {
+  line-height: 1.5;
+  font-family: var(--font-family-copy, sans-serif);
+  background: linear-gradient(to right, #fffdfb, #fff2e5);
+  color: var(--color-copy);
+}
+
+ol,
+p {
+  margin-bottom: 1.5rem;
+}

@@ -8,7 +8,7 @@ function Intro() {
 
       <h2>Rules:</h2>
 
-      <ul>
+      <ol className="list-lower-latin">
         <li>
           There will be {quizSettings.numOfQuestions} statements, one at a time.
         </li>
@@ -18,7 +18,7 @@ function Intro() {
           If you refresh the browser, your answers will be lost, and a new game
           will start.
         </li>
-      </ul>
+      </ol>
 
       <p>Simple enough? Are you ready?</p>
 
