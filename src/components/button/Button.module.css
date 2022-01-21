@@ -1,14 +1,11 @@
-.normal {
-  background: blue;
-  padding: 1rem 2rem;
-  border: none;
-  color: white;
-  border-radius: 4px;
-  font-weight: bold;
-  cursor: pointer;
+.selected {
+  background: var(--color-primary-pop);
 }
 
-.disabled {
-  background: gray;
+.disabled,
+.disabled:hover,
+.disabled:active,
+.disabled:focus {
+  background: var(--color-primary);
   cursor: not-allowed;
 }

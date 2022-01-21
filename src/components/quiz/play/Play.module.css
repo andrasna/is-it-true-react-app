@@ -1,0 +1,27 @@
+.info {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.question {
+  max-width: var(--width-md);
+  padding: clamp(1rem, 10vw, 3rem);
+  border-radius: 1.5rem;
+  background: #caf9ff;
+  margin: 2rem auto;
+  text-align: center;
+  font-size: var(--font-size-3);
+}
+
+.radios {
+  display: flex;
+  justify-content: center;
+  gap: clamp(2rem, 10vw, 10rem);
+  margin-bottom: 2rem;
+  font-size: var(--font-size-5);
+}
+
+.submit {
+  text-align: center;
+}

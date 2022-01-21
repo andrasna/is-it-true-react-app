@@ -4,7 +4,7 @@ function Button({ clickHandler, isDisabled, children }) {
   return (
     <button
       onClick={clickHandler}
-      className={`${styles.normal} ${isDisabled ? styles.disabled : ''}`}
+      className={`${styles.selected} ${isDisabled ? styles.disabled : ''}`}
     >
       {children}
     </button>

@@ -10,3 +10,36 @@ ol,
 p {
   margin-bottom: 1.5rem;
 }
+
+button {
+  cursor: pointer;
+  background: var(--color-primary);
+  padding: 1rem 2rem;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: var(--font-size-4);
+  transition: 0.3s;
+}
+
+button:hover,
+button:active,
+button:focus {
+  background: var(--color-primary-pop);
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-primary);
+  font-weight: bold;
+  border-bottom: 4px solid;
+  padding: 0.5rem 0;
+  transition: 0.3s;
+}
+
+a:hover,
+a:active,
+a:focus {
+  color: var(--color-primary-pop);
+}

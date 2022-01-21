@@ -1,6 +1,7 @@
 html {
   /* Widths */
-  --width-md: 60rem;
+  --width-lg: 50rem;
+  --width-md: 35rem;
 
   /* Paddings */
   --padding-1: 1rem;
@@ -8,6 +9,18 @@ html {
   /* Font families */
   --font-family-copy: 'Oxygen';
 
+  /*
+  Font sizes
+
+  1..6
+  */
+  --font-size-3: 1.5rem;
+  --font-size-4: 1.25rem;
+  --font-size-5: 1.125rem;
+  --font-size-6: 1rem;
+
   /* Colors */
   --color-copy: #413631;
+  --color-primary: #757aff;
+  --color-primary-pop: #0008c1;
 }
