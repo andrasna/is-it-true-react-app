@@ -22,5 +22,10 @@ html {
   --color-copy: #413631;
   --color-primary: #757aff;
   --color-primary-pop: #0008c1;
-  --color-quiz-card: #ffecb1;
+  --color-quiz-card: radial-gradient(
+    circle,
+    rgb(255, 237, 183) 0%,
+    rgb(255, 232, 161) 100%
+  );
+  --color-progress-bar: var(--color-primary);
 }

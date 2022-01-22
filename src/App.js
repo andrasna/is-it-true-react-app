@@ -3,7 +3,7 @@ import Home from './pages/Home'
 import Quiz from './pages/Quiz'
 import Intro from './components/quiz/intro/Intro'
 import Play from './components/quiz/play/Play'
-import Result from './components/quiz/Result'
+import Result from './components/quiz/result/Result'
 
 function App() {
   return (

@@ -24,9 +24,11 @@ function Intro() {
         </ol>
       </div>
 
-      <p className="text-center">Simple enough? Are you ready?</p>
+      <footer className="text-center">
+        <p>Simple enough? Are you ready?</p>
 
-      <Link to="play">Let&apos;s play</Link>
+        <Link to="play">Let&apos;s play</Link>
+      </footer>
     </div>
   )
 }

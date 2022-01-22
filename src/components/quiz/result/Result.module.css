@@ -1,4 +1,4 @@
-.rules {
+.result {
   max-width: var(--width-sm);
   margin: 0 auto;
   padding: clamp(1rem, 10vw, 2rem);

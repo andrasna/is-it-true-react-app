@@ -1,11 +1,8 @@
-.selected {
-  background: var(--color-primary-pop);
+.activated {
+  background: var(--color-primary-pop) !important;
 }
 
-.disabled,
-.disabled:hover,
-.disabled:active,
-.disabled:focus {
-  background: var(--color-primary);
+.disabled {
+  background: var(--color-primary) !important;
   cursor: not-allowed;
 }
