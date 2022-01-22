@@ -8,4 +8,4 @@ I wanted to take notes to explain decisions, or to mention problems I am aware o
 - Eslint is configured not to deal with code formatting.
 - Prettier is used to make code formatting consistent.
 - If we want eslint to do code formatting checks, we have to sync prettier and eslint.
-- These rules should normally be enforce with something like with pre-commit hooks.
+- These rules should normally be enforce with something like pre-commit hooks.
