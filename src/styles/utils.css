@@ -1,8 +1,10 @@
-/* List style utils */
+/* List style */
 
 .list-lower-latin {
   list-style-type: lower-latin;
 }
+
+/* Alignment */
 
 .text-center {
   text-align: center;
