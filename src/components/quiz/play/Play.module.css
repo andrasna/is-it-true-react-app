@@ -32,10 +32,6 @@
   font-size: var(--font-size-5);
 }
 
-.submit {
-  text-align: center;
-}
-
 .progress {
   height: 0.4rem;
   background: var(--color-progress-bar);

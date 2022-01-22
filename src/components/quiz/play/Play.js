@@ -96,7 +96,7 @@ function Play() {
         </div>
       </div>
 
-      <div className={styles.submit}>
+      <div className="text-center">
         <Button clickHandler={handleAnswerSubmit} isDisabled={answer === null}>
           Submit
         </Button>
