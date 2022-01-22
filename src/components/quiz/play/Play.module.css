@@ -11,7 +11,7 @@
   background: var(--color-quiz-card);
   margin: 1rem auto 2rem;
   text-align: center;
-  font-size: var(--font-size-3);
+  font-size: clamp(1.125rem, 6vw, 1.5rem);
   position: relative;
 }
 
@@ -26,12 +26,6 @@
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.7);
 }
-
-/* .decor {
-  font-size: var(--font-size-5);
-  font-weight: bold;
-  pos
-} */
 
 .radios {
   display: flex;

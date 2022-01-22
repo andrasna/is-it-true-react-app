@@ -11,9 +11,7 @@ html {
   --font-family-copy: 'Oxygen';
 
   /*
-  Font sizes
-
-  1..6
+  Font sizes 1..n
   */
   --font-size-3: 1.5rem;
   --font-size-4: 1.25rem;
