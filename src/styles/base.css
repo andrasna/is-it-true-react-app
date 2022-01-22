@@ -11,6 +11,10 @@ p {
   margin-bottom: 1.5rem;
 }
 
+li {
+  line-height: 2;
+}
+
 button {
   cursor: pointer;
   background: var(--color-primary);

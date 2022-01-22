@@ -19,13 +19,12 @@
   content: '?';
   position: absolute;
   bottom: -1rem;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
+  left: 50%;
+  margin-left: -1rem;
   width: 2rem;
   height: 2rem;
-  background: rgba(255, 255, 255, 0.7);
   border-radius: 50%;
+  background: rgba(255, 255, 255, 0.7);
 }
 
 /* .decor {

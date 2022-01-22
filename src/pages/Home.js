@@ -5,9 +5,11 @@ function Home() {
   return (
     <Wrapper>
       <main>
-        <h1>Welcome Home!</h1>
+        <h1 className="text-center">Welcome Home!</h1>
 
-        <Link to="quiz">Go to the quiz</Link>
+        <div className="text-center">
+          <Link to="quiz">Go to the quiz</Link>
+        </div>
       </main>
     </Wrapper>
   )
