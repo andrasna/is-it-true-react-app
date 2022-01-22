@@ -23,7 +23,7 @@ button {
   color: white;
   border-radius: 4px;
   font-weight: bold;
-  font-size: clamp(1.125rem, 6vw, 1.5rem);
+  font-size: clamp(1rem, 4vw, 1.25rem);
   transition: 0.3s;
 }
 
