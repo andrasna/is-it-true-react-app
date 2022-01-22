@@ -4,19 +4,15 @@
   gap: 2rem;
 }
 
-.question {
-  max-width: var(--width-md);
+.card {
+  composes: card from '../intro/Intro.module.css';
   padding: clamp(1rem, 10vw, 3rem);
-  border-radius: 1.5rem;
-  background: var(--color-quiz-card);
-  margin: 1rem auto 2rem;
-  text-align: center;
-  font-size: clamp(1.125rem, 6vw, 1.5rem);
   position: relative;
-  box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.2);
+  font-size: clamp(1.125rem, 6vw, 1.5rem);
+  max-width: var(--width-md);
 }
 
-.answer {
+.questionMark {
   content: '?';
   position: absolute;
   bottom: -1rem;
@@ -45,4 +41,5 @@
   background: var(--color-progress-bar);
   transition: width 1.5s;
   border-radius: 8px;
+  margin-bottom: 1rem;
 }

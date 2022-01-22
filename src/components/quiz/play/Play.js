@@ -9,7 +9,7 @@ import { decode } from 'html-entities'
 function Play() {
   const navigate = useNavigate()
   const [answer, setAnswer] = useState(null)
-  const [questions, [answers, setAnswers]] = useOutletContext()
+  const [questionObjects, [answers, setAnswers]] = useOutletContext()
 
   function calcIndex() {
     return answers.length < numOfQuestions ? answers.length : numOfQuestions - 1
@@ -35,7 +35,7 @@ function Play() {
 
   function selectCorrectAnswer() {
     setAnswer(
-      questions[calcIndex()].correct_answer === 'True' ? 'true' : 'false'
+      questionObjects[calcIndex()].correct_answer === 'True' ? 'True' : 'False'
     )
   }
 
@@ -56,14 +56,15 @@ function Play() {
 
       {/* Info section at the top of the quiz */}
       <div className={styles.info}>
-        <p>Category: {questions[calcIndex()]?.category}</p>
+        <p>Category: {questionObjects[calcIndex()]?.category}</p>
         <p>Question {`${calcIndex() + 1} / ${numOfQuestions}`}</p>
       </div>
 
       {/* The question */}
-      <div className={styles.question}>
-        <p>{decode(questions[calcIndex()]?.question)}</p>
-        <span onClick={selectCorrectAnswer} className={styles.answer}>
+      <div className={`text-center ${styles.card}`}>
+        <p>{decode(questionObjects[calcIndex()]?.question)}</p>
+
+        <span onClick={selectCorrectAnswer} className={styles.questionMark}>
           ?
         </span>
       </div>
@@ -72,11 +73,11 @@ function Play() {
       <div className={styles.radios}>
         <div>
           <input
-            checked={answer === 'true'}
+            checked={answer === 'True'}
             type="radio"
             id="true"
             name="answer"
-            value="true"
+            value="True"
             onChange={handleAnswerSelection}
           />
           <label htmlFor="true">True</label>
@@ -84,11 +85,11 @@ function Play() {
 
         <div>
           <input
-            checked={answer === 'false'}
+            checked={answer === 'False'}
             type="radio"
             id="false"
             name="answer"
-            value="false"
+            value="False"
             onChange={handleAnswerSelection}
           />
           <label htmlFor="false">False</label>

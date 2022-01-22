@@ -5,7 +5,7 @@ import { quizSettings } from '../settings'
 const { numOfQuestions } = quizSettings
 
 function Quiz() {
-  const [questions, setQuestions] = useState([])
+  const [questionObjects, setQuestionObjects] = useState([])
   const [answers, setAnswers] = useState([])
 
   useEffect(() => {
@@ -13,7 +13,7 @@ function Quiz() {
       const url = `https://opentdb.com/api.php?amount=${numOfQuestions}&type=boolean`
       const response = await fetch(url)
       const { results } = await response.json()
-      setQuestions(results)
+      setQuestionObjects(results)
     }
 
     fetchQuestions()
@@ -22,7 +22,7 @@ function Quiz() {
   return (
     <Wrapper>
       <main>
-        <Outlet context={[questions, [answers, setAnswers]]} />
+        <Outlet context={[questionObjects, [answers, setAnswers]]} />
       </main>
     </Wrapper>
   )

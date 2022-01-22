@@ -28,4 +28,7 @@ html {
     rgb(255, 232, 161) 100%
   );
   --color-progress-bar: var(--color-primary);
+
+  /* Shadows */
+  --card-shadow: 0px 1px 0px rgba(0, 0, 0, 0.2);
 }

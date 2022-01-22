@@ -8,7 +8,12 @@ html {
 
 ol,
 p {
-  margin-bottom: 1.5rem;
+  margin: 0;
+  margin-bottom: 1rem;
+}
+
+ol {
+  padding-left: 1.5rem;
 }
 
 li {

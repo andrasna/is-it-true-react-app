@@ -1,9 +1,8 @@
-.rules {
+.card {
   max-width: var(--width-sm);
-  margin: 0 auto;
   padding: clamp(1rem, 10vw, 2rem);
   border-radius: 1.5rem;
   background: var(--color-quiz-card);
   margin: 1rem auto 2rem;
-  box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--card-shadow);
 }

@@ -7,7 +7,7 @@ function Intro() {
     <div className={styles.intro}>
       <h1 className="text-center">Hello, welcome to this Quiz.</h1>
 
-      <div className={styles.rules}>
+      <div className={styles.card}>
         <h2 className="text-center">Rules</h2>
 
         <ol className="list-lower-latin">
