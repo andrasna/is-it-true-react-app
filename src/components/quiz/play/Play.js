@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { quizSettings } from '../../../settings'
 const { numOfQuestions } = quizSettings
 import { useOutletContext, useNavigate } from 'react-router-dom'
@@ -12,19 +13,20 @@ function Play() {
   const [questionObjects, [answers, setAnswers]] = useOutletContext()
 
   const calcIndex = () => Math.min(answers.length, numOfQuestions - 1)
+  const allAnswered = () => answers.length === numOfQuestions
+
+  useEffect(() => {
+    if (!allAnswered()) {
+      setAnswer(null)
+    }
+  }, [answers])
 
   function handleAnswerSubmit() {
-    if (answer === null) {
+    if (answer === null || allAnswered()) {
       return
     }
 
-    if (answers.length < numOfQuestions) {
-      setAnswers(() => [...answers, answer])
-    }
-
-    if (answers.length + 1 < numOfQuestions) {
-      setAnswer(null)
-    }
+    setAnswers(() => [...answers, answer])
   }
 
   function handleAnswerSelection(e) {
@@ -32,9 +34,7 @@ function Play() {
   }
 
   function selectCorrectAnswer() {
-    setAnswer(
-      questionObjects[calcIndex()].correct_answer === 'True' ? 'True' : 'False'
-    )
+    setAnswer(questionObjects[calcIndex()].correct_answer)
   }
 
   return (
@@ -42,7 +42,7 @@ function Play() {
       {/* Progress bar */}
       <div
         onTransitionEnd={() => {
-          if (numOfQuestions === answers.length) {
+          if (allAnswered()) {
             navigate('../result')
           }
         }}
