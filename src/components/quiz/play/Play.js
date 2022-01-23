@@ -11,9 +11,7 @@ function Play() {
   const [answer, setAnswer] = useState(null)
   const [questionObjects, [answers, setAnswers]] = useOutletContext()
 
-  function calcIndex() {
-    return answers.length < numOfQuestions ? answers.length : numOfQuestions - 1
-  }
+  const calcIndex = () => Math.min(answers.length, numOfQuestions - 1)
 
   function handleAnswerSubmit() {
     if (answer === null) {
