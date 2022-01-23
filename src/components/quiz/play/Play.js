@@ -1,8 +1,7 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { quizSettings } from '../../../settings'
 const { numOfQuestions } = quizSettings
 import { useOutletContext, useNavigate } from 'react-router-dom'
-import { useState } from 'react'
 import Button from '../../button/Button'
 import styles from './Play.module.css'
 import { decode } from 'html-entities'
