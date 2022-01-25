@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { quizSettings } from '../../../settings'
 const { numOfQuestions } = quizSettings
 import { useOutletContext, useNavigate } from 'react-router-dom'
@@ -13,12 +13,7 @@ function Play() {
 
   const calcIndex = () => Math.min(answers.length, numOfQuestions - 1)
   const allAnswered = () => answers.length === numOfQuestions
-
-  useEffect(() => {
-    if (!allAnswered()) {
-      setAnswer(null)
-    }
-  }, [answers])
+  const lastAnswer = () => answers.length + 1 === numOfQuestions
 
   function handleAnswerSubmit() {
     if (answer === null || allAnswered()) {
@@ -26,6 +21,10 @@ function Play() {
     }
 
     setAnswers([...answers, answer])
+
+    if (!lastAnswer()) {
+      setAnswer(null)
+    }
   }
 
   function handleAnswerSelection(e) {
