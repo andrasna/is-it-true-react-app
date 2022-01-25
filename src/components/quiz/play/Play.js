@@ -25,7 +25,7 @@ function Play() {
       return
     }
 
-    setAnswers(() => [...answers, answer])
+    setAnswers([...answers, answer])
   }
 
   function handleAnswerSelection(e) {
