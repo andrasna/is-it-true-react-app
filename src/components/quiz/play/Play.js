@@ -36,10 +36,8 @@ function Play() {
     setSelectedAnswer(questions[calcIndex()].correct_answer)
   }
 
-  {
-    if (!isStarting && !started) {
-      return <Navigate to="/" />
-    }
+  if (!isStarting && !started) {
+    return <Navigate to="/" />
   }
 
   return (

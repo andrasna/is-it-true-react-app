@@ -17,10 +17,8 @@ function Result() {
 
   useEffect(() => quizAction({ type: 'preFetch' }), [])
 
-  {
-    if (!isStarting && !started) {
-      return <Navigate to="/" />
-    }
+  if (!isStarting && !started) {
+    return <Navigate to="/" />
   }
 
   return (
