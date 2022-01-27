@@ -46,9 +46,15 @@ function reducer(state, action) {
 
 async function fetchQuestions() {
   const url = `https://opentdb.com/api.php?amount=${numOfQuestions}&type=boolean`
-  const response = await fetch(url)
-  const { results } = await response.json()
-  return results
+
+  try {
+    const response = await fetch(url)
+    const { results } = await response.json()
+    return results
+  } catch (e) {
+    console.error(e)
+    return []
+  }
 }
 
 function Quiz() {
