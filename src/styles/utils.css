@@ -9,3 +9,9 @@
 .text-center {
   text-align: center;
 }
+
+/* Whitespace */
+
+.whitespace-nowrap {
+  white-space: nowrap;
+}

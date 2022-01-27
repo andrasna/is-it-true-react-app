@@ -60,7 +60,12 @@ function Play() {
       {/* Info section at the top of the quiz */}
       <div className={styles.info}>
         <p>Category: {questions[calcIndex()]?.category}</p>
-        <p>Question {`${calcIndex() + 1} / ${numOfQuestions}`}</p>
+        <p>
+          Question
+          <span className="whitespace-nowrap">
+            {` ${calcIndex() + 1} / ${numOfQuestions}`}
+          </span>
+        </p>
       </div>
 
       {/* The question */}
