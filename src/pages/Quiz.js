@@ -24,16 +24,16 @@ function reducer(state, action) {
 function Quiz() {
   const [quiz, quizAction] = useReducer(reducer, initialState)
 
+  async function fetchQuestions() {
+    const url = `https://opentdb.com/api.php?amount=${numOfQuestions}&type=boolean`
+    const response = await fetch(url)
+    const { results } = await response.json()
+    quizAction({ type: 'questionsFetched', payload: results })
+  }
+
   useEffect(() => {
     if (quiz.started) {
       return
-    }
-
-    async function fetchQuestions() {
-      const url = `https://opentdb.com/api.php?amount=${numOfQuestions}&type=boolean`
-      const response = await fetch(url)
-      const { results } = await response.json()
-      quizAction({ type: 'questionsFetched', payload: results })
     }
 
     fetchQuestions()
