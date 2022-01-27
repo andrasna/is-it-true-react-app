@@ -1,11 +1,12 @@
 import { useOutletContext } from 'react-router-dom'
+import Link from '../../link/Link'
 import styles from './Result.module.css'
 import { decode } from 'html-entities'
 
 function Result() {
-  const [questionObjects, [answers]] = useOutletContext()
+  const [{ questions, answers }, quizAction] = useOutletContext()
 
-  const correctAnswers = questionObjects.map((a) => a.correct_answer)
+  const correctAnswers = questions.map((a) => a.correct_answer)
   const scores = correctAnswers.map((a, i) => (a === answers[i] ? 1 : 0))
   const scoresSum = scores.reduce((a, b) => a + b)
   const scoreToEmoji = (score) => (score === 0 ? <>&#10006;</> : <>&#10004;</>)
@@ -22,7 +23,7 @@ function Result() {
         </h2>
 
         <ol>
-          {questionObjects.map((a, i) => {
+          {questions.map((a, i) => {
             return (
               <li key={i}>
                 <div className={styles.item}>
@@ -57,7 +58,9 @@ function Result() {
       <footer className="text-center">
         <p>Wanna play again?</p>
 
-        <a href="/quiz/play">Let&apos;s play</a>
+        <Link to="../play" onClick={() => quizAction({ type: 'reset' })}>
+          Let&apos;s play
+        </Link>
       </footer>
     </>
   )

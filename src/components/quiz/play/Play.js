@@ -8,31 +8,31 @@ import { decode } from 'html-entities'
 
 function Play() {
   const navigate = useNavigate()
-  const [answer, setAnswer] = useState(null)
-  const [questionObjects, [answers, setAnswers]] = useOutletContext()
+  const [selectedAnswer, setSelectedAnswer] = useState(null)
+  const [{ questions, answers }, quizAction] = useOutletContext()
 
   const calcIndex = () => Math.min(answers.length, numOfQuestions - 1)
   const allAnswered = () => answers.length === numOfQuestions
   const lastAnswer = () => answers.length + 1 === numOfQuestions
 
-  function handleAnswerSubmit() {
-    if (answer === null || allAnswered()) {
+  function handleAnswerSubmission() {
+    if (selectedAnswer === null || allAnswered()) {
       return
     }
 
-    setAnswers([...answers, answer])
+    quizAction({ type: 'answerSubmission', payload: selectedAnswer })
 
     if (!lastAnswer()) {
-      setAnswer(null)
+      setSelectedAnswer(null)
     }
   }
 
   function handleAnswerSelection(e) {
-    setAnswer(e.currentTarget.value)
+    setSelectedAnswer(e.currentTarget.value)
   }
 
-  function selectCorrectAnswer() {
-    setAnswer(questionObjects[calcIndex()].correct_answer)
+  function handleCorrectAnswerSelection() {
+    setSelectedAnswer(questions[calcIndex()].correct_answer)
   }
 
   return (
@@ -52,15 +52,18 @@ function Play() {
 
       {/* Info section at the top of the quiz */}
       <div className={styles.info}>
-        <p>Category: {questionObjects[calcIndex()]?.category}</p>
+        <p>Category: {questions[calcIndex()]?.category}</p>
         <p>Question {`${calcIndex() + 1} / ${numOfQuestions}`}</p>
       </div>
 
       {/* The question */}
       <div className={`text-center ${styles.card}`}>
-        <p>{decode(questionObjects[calcIndex()]?.question)}</p>
+        <p>{decode(questions[calcIndex()]?.question)}</p>
 
-        <span onClick={selectCorrectAnswer} className={styles.questionMark}>
+        <span
+          onClick={handleCorrectAnswerSelection}
+          className={styles.questionMark}
+        >
           ?
         </span>
       </div>
@@ -69,7 +72,7 @@ function Play() {
       <div className={styles.radios}>
         <div>
           <input
-            checked={answer === 'True'}
+            checked={selectedAnswer === 'True'}
             type="radio"
             id="true"
             name="answer"
@@ -81,7 +84,7 @@ function Play() {
 
         <div>
           <input
-            checked={answer === 'False'}
+            checked={selectedAnswer === 'False'}
             type="radio"
             id="false"
             name="answer"
@@ -93,7 +96,10 @@ function Play() {
       </div>
 
       <div className="text-center">
-        <Button clickHandler={handleAnswerSubmit} isDisabled={answer === null}>
+        <Button
+          clickHandler={handleAnswerSubmission}
+          isDisabled={selectedAnswer === null}
+        >
           Submit
         </Button>
       </div>
