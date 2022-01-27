@@ -6,23 +6,36 @@ const { numOfQuestions } = quizSettings
 
 const initialState = {
   fetching: false,
+  preFetching: false,
   started: false,
+  preFetchedQuestions: [],
   questions: [],
   answers: [],
 }
 
 function reducer(state, action) {
   switch (action.type) {
-    case 'fetch':
-      return { ...initialState, fetching: true }
-    case 'fetchingSuccessful':
+    case 'preFetch':
+      return { ...state, preFetching: true }
+    case 'preFetchSuccessful':
+      return {
+        ...state,
+        preFetching: false,
+        preFetchedQuestions: action.payload,
+      }
+    case 'preFetchFailed':
+      return { ...state, preFetching: false }
+    case 'start':
+      return { ...state, fetching: true }
+    case 'startSuccessful':
       return {
         ...initialState,
         fetching: false,
         started: true,
+        preFetchedQuestions: [],
         questions: action.payload,
       }
-    case 'fetchingFailed':
+    case 'startFailed':
       return { ...initialState, fetching: false }
     case 'submitAnswer':
       return { ...state, answers: [...state.answers, action.payload] }
@@ -31,27 +44,52 @@ function reducer(state, action) {
   }
 }
 
+async function fetchQuestions() {
+  const url = `https://opentdb.com/api.php?amount=${numOfQuestions}&type=boolean`
+  const response = await fetch(url)
+  const { results } = await response.json()
+  return results
+}
+
 function Quiz() {
   const [quiz, quizAction] = useReducer(reducer, initialState)
 
-  async function fetchQuestions() {
-    const url = `https://opentdb.com/api.php?amount=${numOfQuestions}&type=boolean`
-    const response = await fetch(url)
-    const { results } = await response.json()
+  async function start() {
+    if (quiz.preFetchedQuestions.length === numOfQuestions) {
+      quizAction({
+        type: 'startSuccessful',
+        payload: quiz.preFetchedQuestions,
+      })
+      return
+    }
+
+    const results = await fetchQuestions()
 
     if (results.length === numOfQuestions) {
-      quizAction({ type: 'fetchingSuccessful', payload: results })
+      quizAction({ type: 'startSuccessful', payload: results })
     } else {
-      quizAction({ type: 'fetchingFailed' })
+      quizAction({ type: 'startFailed' })
+    }
+  }
+
+  async function preFetch() {
+    const results = await fetchQuestions()
+
+    if (results.length === numOfQuestions) {
+      quizAction({ type: 'preFetchSuccessful', payload: results })
+    } else {
+      quizAction({ type: 'preFetchFailed' })
     }
   }
 
   useEffect(() => {
-    if (!quiz.fetching) {
-      return
+    if (quiz.fetching) {
+      start()
     }
 
-    fetchQuestions()
+    if (quiz.preFetching) {
+      preFetch()
+    }
   }, [quiz])
 
   return (

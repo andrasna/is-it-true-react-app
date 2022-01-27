@@ -2,6 +2,7 @@ import { useOutletContext, Navigate } from 'react-router-dom'
 import Link from '../../link/Link'
 import styles from './Result.module.css'
 import { decode } from 'html-entities'
+import { useEffect } from 'react'
 
 function Result() {
   const [{ fetching, started, questions, answers }, quizAction] =
@@ -13,6 +14,8 @@ function Result() {
     return a + b
   }, 0)
   const scoreToEmoji = (score) => (score === 0 ? <>&#10006;</> : <>&#10004;</>)
+
+  useEffect(() => quizAction({ type: 'preFetch' }), [])
 
   {
     if (!fetching && !started) {
@@ -67,7 +70,7 @@ function Result() {
       <footer className="text-center">
         <p>Wanna play again?</p>
 
-        <Link to="../play" onClick={() => quizAction({ type: 'fetch' })}>
+        <Link to="../play" onClick={() => quizAction({ type: 'start' })}>
           Let&apos;s play
         </Link>
       </footer>

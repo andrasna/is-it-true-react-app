@@ -2,9 +2,12 @@ import Link from '../../link/Link'
 import { quizSettings } from '../../../settings.js'
 import styles from './Intro.module.css'
 import { useOutletContext } from 'react-router-dom'
+import { useEffect } from 'react'
 
 function Intro() {
   const [, quizAction] = useOutletContext()
+
+  useEffect(() => quizAction({ type: 'preFetch' }), [])
 
   return (
     <div className={styles.intro}>
@@ -30,7 +33,7 @@ function Intro() {
       <footer className="text-center">
         <p>Simple enough? Are you ready?</p>
 
-        <Link to="play" onClick={() => quizAction({ type: 'fetch' })}>
+        <Link to="play" onClick={() => quizAction({ type: 'start' })}>
           Let&apos;s play
         </Link>
       </footer>
