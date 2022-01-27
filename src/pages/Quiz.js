@@ -32,7 +32,6 @@ function reducer(state, action) {
         ...initialState,
         isStarting: false,
         started: true,
-        preFetchedQuestions: [],
         questions: action.payload,
       }
     case 'startFailed':
