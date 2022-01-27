@@ -9,7 +9,7 @@ import { decode } from 'html-entities'
 function Play() {
   const navigate = useNavigate()
   const [selectedAnswer, setSelectedAnswer] = useState(null)
-  const [{ fetching, started, questions, answers }, quizAction] =
+  const [{ isStarting, started, questions, answers }, quizAction] =
     useOutletContext()
 
   const calcIndex = () => Math.min(answers.length, numOfQuestions - 1)
@@ -37,7 +37,7 @@ function Play() {
   }
 
   {
-    if (!fetching && !started) {
+    if (!isStarting && !started) {
       return <Navigate to="/" />
     }
   }

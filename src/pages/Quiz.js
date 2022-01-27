@@ -5,8 +5,8 @@ import { quizSettings } from '../settings'
 const { numOfQuestions } = quizSettings
 
 const initialState = {
-  fetching: false,
-  preFetching: false,
+  isPreFetching: false,
+  isStarting: false,
   started: false,
   preFetchedQuestions: [],
   questions: [],
@@ -16,27 +16,27 @@ const initialState = {
 function reducer(state, action) {
   switch (action.type) {
     case 'preFetch':
-      return { ...state, preFetching: true }
+      return { ...state, isPreFetching: true }
     case 'preFetchSuccessful':
       return {
         ...state,
-        preFetching: false,
+        isPreFetching: false,
         preFetchedQuestions: action.payload,
       }
     case 'preFetchFailed':
-      return { ...state, preFetching: false }
+      return { ...state, isPreFetching: false }
     case 'start':
-      return { ...state, fetching: true }
+      return { ...state, isStarting: true }
     case 'startSuccessful':
       return {
         ...initialState,
-        fetching: false,
+        isStarting: false,
         started: true,
         preFetchedQuestions: [],
         questions: action.payload,
       }
     case 'startFailed':
-      return { ...initialState, fetching: false }
+      return { ...initialState, isStarting: false }
     case 'submitAnswer':
       return { ...state, answers: [...state.answers, action.payload] }
     case 'reset':
@@ -83,11 +83,11 @@ function Quiz() {
   }
 
   useEffect(() => {
-    if (quiz.fetching) {
+    if (quiz.isStarting) {
       start()
     }
 
-    if (quiz.preFetching) {
+    if (quiz.isPreFetching) {
       preFetch()
     }
   }, [quiz])

@@ -5,7 +5,7 @@ import { decode } from 'html-entities'
 import { useEffect } from 'react'
 
 function Result() {
-  const [{ fetching, started, questions, answers }, quizAction] =
+  const [{ isStarting, started, questions, answers }, quizAction] =
     useOutletContext()
 
   const correctAnswers = questions.map((a) => a.correct_answer)
@@ -18,7 +18,7 @@ function Result() {
   useEffect(() => quizAction({ type: 'preFetch' }), [])
 
   {
-    if (!fetching && !started) {
+    if (!isStarting && !started) {
       return <Navigate to="/" />
     }
   }
