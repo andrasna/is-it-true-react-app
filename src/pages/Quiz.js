@@ -5,6 +5,7 @@ import { quizSettings } from '../settings'
 const { numOfQuestions } = quizSettings
 
 const initialState = {
+  fetching: false,
   started: false,
   questions: [],
   answers: [],
@@ -12,9 +13,18 @@ const initialState = {
 
 function reducer(state, action) {
   switch (action.type) {
-    case 'questionsFetched':
-      return { ...state, questions: action.payload, started: true }
-    case 'answerSubmission':
+    case 'fetch':
+      return { ...initialState, fetching: true }
+    case 'fetchingSuccessful':
+      return {
+        ...initialState,
+        fetching: false,
+        started: true,
+        questions: action.payload,
+      }
+    case 'fetchingFailed':
+      return { ...initialState, fetching: false }
+    case 'submitAnswer':
       return { ...state, answers: [...state.answers, action.payload] }
     case 'reset':
       return initialState
@@ -28,11 +38,16 @@ function Quiz() {
     const url = `https://opentdb.com/api.php?amount=${numOfQuestions}&type=boolean`
     const response = await fetch(url)
     const { results } = await response.json()
-    quizAction({ type: 'questionsFetched', payload: results })
+
+    if (results.length === numOfQuestions) {
+      quizAction({ type: 'fetchingSuccessful', payload: results })
+    } else {
+      quizAction({ type: 'fetchingFailed' })
+    }
   }
 
   useEffect(() => {
-    if (quiz.started) {
+    if (!quiz.fetching) {
       return
     }
 

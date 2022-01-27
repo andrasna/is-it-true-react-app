@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { quizSettings } from '../../../settings'
 const { numOfQuestions } = quizSettings
-import { useOutletContext, useNavigate } from 'react-router-dom'
+import { useOutletContext, useNavigate, Navigate } from 'react-router-dom'
 import Button from '../../button/Button'
 import styles from './Play.module.css'
 import { decode } from 'html-entities'
@@ -9,18 +9,19 @@ import { decode } from 'html-entities'
 function Play() {
   const navigate = useNavigate()
   const [selectedAnswer, setSelectedAnswer] = useState(null)
-  const [{ questions, answers }, quizAction] = useOutletContext()
+  const [{ fetching, started, questions, answers }, quizAction] =
+    useOutletContext()
 
   const calcIndex = () => Math.min(answers.length, numOfQuestions - 1)
   const allAnswered = () => answers.length === numOfQuestions
   const lastAnswer = () => answers.length + 1 === numOfQuestions
 
-  function handleAnswerSubmission() {
+  function handleSubmitAnswer() {
     if (selectedAnswer === null || allAnswered()) {
       return
     }
 
-    quizAction({ type: 'answerSubmission', payload: selectedAnswer })
+    quizAction({ type: 'submitAnswer', payload: selectedAnswer })
 
     if (!lastAnswer()) {
       setSelectedAnswer(null)
@@ -33,6 +34,12 @@ function Play() {
 
   function handleCorrectAnswerSelection() {
     setSelectedAnswer(questions[calcIndex()].correct_answer)
+  }
+
+  {
+    if (!fetching && !started) {
+      return <Navigate to="/" />
+    }
   }
 
   return (
@@ -97,7 +104,7 @@ function Play() {
 
       <div className="text-center">
         <Button
-          clickHandler={handleAnswerSubmission}
+          clickHandler={handleSubmitAnswer}
           isDisabled={selectedAnswer === null}
         >
           Submit

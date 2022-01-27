@@ -1,8 +1,11 @@
 import Link from '../../link/Link'
 import { quizSettings } from '../../../settings.js'
 import styles from './Intro.module.css'
+import { useOutletContext } from 'react-router-dom'
 
 function Intro() {
+  const [, quizAction] = useOutletContext()
+
   return (
     <div className={styles.intro}>
       <h1 className="text-center">Hello, welcome to this Quiz.</h1>
@@ -27,7 +30,9 @@ function Intro() {
       <footer className="text-center">
         <p>Simple enough? Are you ready?</p>
 
-        <Link to="play">Let&apos;s play</Link>
+        <Link to="play" onClick={() => quizAction({ type: 'fetch' })}>
+          Let&apos;s play
+        </Link>
       </footer>
     </div>
   )

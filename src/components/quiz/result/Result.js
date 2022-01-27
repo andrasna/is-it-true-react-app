@@ -1,15 +1,24 @@
-import { useOutletContext } from 'react-router-dom'
+import { useOutletContext, Navigate } from 'react-router-dom'
 import Link from '../../link/Link'
 import styles from './Result.module.css'
 import { decode } from 'html-entities'
 
 function Result() {
-  const [{ questions, answers }, quizAction] = useOutletContext()
+  const [{ fetching, started, questions, answers }, quizAction] =
+    useOutletContext()
 
   const correctAnswers = questions.map((a) => a.correct_answer)
   const scores = correctAnswers.map((a, i) => (a === answers[i] ? 1 : 0))
-  const scoresSum = scores.reduce((a, b) => a + b)
+  const scoresSum = scores.reduce((a, b) => {
+    return a + b
+  }, 0)
   const scoreToEmoji = (score) => (score === 0 ? <>&#10006;</> : <>&#10004;</>)
+
+  {
+    if (!fetching && !started) {
+      return <Navigate to="/" />
+    }
+  }
 
   return (
     <>
@@ -58,7 +67,7 @@ function Result() {
       <footer className="text-center">
         <p>Wanna play again?</p>
 
-        <Link to="../play" onClick={() => quizAction({ type: 'reset' })}>
+        <Link to="../play" onClick={() => quizAction({ type: 'fetch' })}>
           Let&apos;s play
         </Link>
       </footer>
