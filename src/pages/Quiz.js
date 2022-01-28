@@ -20,7 +20,7 @@ function reducer(state, action) {
     case 'preFetchSuccessful':
       return {
         ...state,
-        isPreFetching: false,
+        preFetching: false,
         preFetchedQuestions: action.payload,
       }
     case 'preFetchFailed':
