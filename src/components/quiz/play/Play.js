@@ -8,22 +8,26 @@ import { decode } from 'html-entities'
 
 function Play() {
   const navigate = useNavigate()
-  const [selectedAnswer, setSelectedAnswer] = useState(null)
   const [{ isStarting, started, questions, answers }, quizAction] =
     useOutletContext()
+  const [selectedAnswer, setSelectedAnswer] = useState(null)
 
-  const calcIndex = () => Math.min(answers.length, numOfQuestions - 1)
-  const allAnswered = () => answers.length === numOfQuestions
-  const lastAnswer = () => answers.length + 1 === numOfQuestions
+  if (!isStarting && !started) {
+    return <Navigate to="/" />
+  }
+
+  const index = Math.min(answers.length, numOfQuestions - 1)
+  const allAnswered = answers.length === numOfQuestions
+  const lastAnswer = answers.length + 1 === numOfQuestions
 
   function handleSubmitAnswer() {
-    if (selectedAnswer === null || allAnswered()) {
+    if (selectedAnswer === null || allAnswered) {
       return
     }
 
     quizAction({ type: 'submitAnswer', payload: selectedAnswer })
 
-    if (!lastAnswer()) {
+    if (!lastAnswer) {
       setSelectedAnswer(null)
     }
   }
@@ -33,11 +37,7 @@ function Play() {
   }
 
   function handleCorrectAnswerSelection() {
-    setSelectedAnswer(questions[calcIndex()].correct_answer)
-  }
-
-  if (!isStarting && !started) {
-    return <Navigate to="/" />
+    setSelectedAnswer(questions[index].correct_answer)
   }
 
   return (
@@ -45,7 +45,7 @@ function Play() {
       {/* Progress bar */}
       <div
         onTransitionEnd={() => {
-          if (allAnswered()) {
+          if (allAnswered) {
             navigate('../result')
           }
         }}
@@ -57,18 +57,18 @@ function Play() {
 
       {/* Info section at the top of the quiz */}
       <div className={styles.info}>
-        <p>Category: {questions[calcIndex()]?.category}</p>
+        <p>Category: {questions[index]?.category}</p>
         <p>
           Question
           <span className="whitespace-nowrap">
-            {` ${calcIndex() + 1} / ${numOfQuestions}`}
+            {` ${index + 1} / ${numOfQuestions}`}
           </span>
         </p>
       </div>
 
       {/* The question */}
       <div className={`text-center ${styles.card}`}>
-        <p>{decode(questions[calcIndex()]?.question)}</p>
+        <p>{decode(questions[index]?.question)}</p>
 
         <span
           onClick={handleCorrectAnswerSelection}

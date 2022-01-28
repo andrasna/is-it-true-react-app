@@ -8,18 +8,16 @@ function Result() {
   const [{ isStarting, started, questions, answers }, quizAction] =
     useOutletContext()
 
-  const correctAnswers = questions.map((a) => a.correct_answer)
-  const scores = correctAnswers.map((a, i) => (a === answers[i] ? 1 : 0))
-  const scoresSum = scores.reduce((a, b) => {
-    return a + b
-  }, 0)
-  const scoreToEmoji = (score) => (score === 0 ? <>&#10006;</> : <>&#10004;</>)
-
-  useEffect(() => quizAction({ type: 'preFetch' }), [])
-
   if (!isStarting && !started) {
     return <Navigate to="/" />
   }
+
+  const correctAnswers = questions.map((a) => a.correct_answer)
+  const scores = correctAnswers.map((a, i) => (a === answers[i] ? 1 : 0))
+  const scoresSum = scores.reduce((a, b) => a + b, 0)
+  const scoreToEmoji = (score) => (score === 0 ? <>&#10006;</> : <>&#10004;</>)
+
+  useEffect(() => quizAction({ type: 'preFetch' }), [])
 
   return (
     <>
