@@ -5,10 +5,10 @@ import { decode } from 'html-entities'
 import { useEffect } from 'react'
 
 function Result() {
-  const [{ isStarting, started, questions, answers }, quizAction] =
+  const [{ starting, running, questions, answers }, quizAction] =
     useOutletContext()
 
-  if (!isStarting && !started) {
+  if (!starting && !running) {
     return <Navigate to="/" />
   }
 

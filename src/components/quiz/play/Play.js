@@ -8,17 +8,17 @@ import { decode } from 'html-entities'
 
 function Play() {
   const navigate = useNavigate()
-  const [{ isStarting, started, questions, answers }, quizAction] =
+  const [{ starting, running, questions, answers }, quizAction] =
     useOutletContext()
   const [selectedAnswer, setSelectedAnswer] = useState(null)
 
-  if (!isStarting && !started) {
+  if (!starting && !running) {
     return <Navigate to="/" />
   }
 
   const index = Math.min(answers.length, numOfQuestions - 1)
   const allAnswered = answers.length === numOfQuestions
-  const lastAnswer = answers.length + 1 === numOfQuestions
+  const isLastAnswer = answers.length + 1 === numOfQuestions
 
   function handleSubmitAnswer() {
     if (selectedAnswer === null || allAnswered) {
@@ -27,7 +27,7 @@ function Play() {
 
     quizAction({ type: 'submitAnswer', payload: selectedAnswer })
 
-    if (!lastAnswer) {
+    if (!isLastAnswer) {
       setSelectedAnswer(null)
     }
   }
