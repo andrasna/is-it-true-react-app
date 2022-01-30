@@ -12,9 +12,9 @@ function Result() {
     return <Navigate to="/" />
   }
 
-  const correctAnswers = questions.map((a) => a.correct_answer)
-  const scores = correctAnswers.map((a, i) => (a === answers[i] ? 1 : 0))
-  const scoresSum = scores.reduce((a, b) => a + b, 0)
+  const correctAnswers = questions.map((el) => el.correct_answer)
+  const scores = correctAnswers.map((el, i) => (el === answers[i] ? 1 : 0))
+  const scoresSum = scores.reduce((acc, el) => acc + el, 0)
   const scoreToEmoji = (score) => (score === 0 ? <>&#10006;</> : <>&#10004;</>)
 
   useEffect(() => quizAction({ type: 'preFetch' }), [])
