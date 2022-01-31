@@ -1,10 +1,10 @@
 import { Outlet } from 'react-router-dom'
-import reducer from './reducer'
 import { useEffect, useReducer } from 'react'
-import Wrapper from '../../components/layout/Wrapper'
 import { quizSettings } from '../../settings'
-import initialState from './initial-state'
 const { numOfQuestions } = quizSettings
+import reducer from './reducer'
+import initialState from './initial-state'
+import Wrapper from '../../components/layout/Wrapper'
 
 async function fetchQuestions() {
   const url = `https://opentdb.com/api.php?amount=${numOfQuestions}&type=boolean`
