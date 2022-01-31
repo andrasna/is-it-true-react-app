@@ -1,47 +1,10 @@
 import { Outlet } from 'react-router-dom'
+import reducer from './reducer'
 import { useEffect, useReducer } from 'react'
-import Wrapper from '../components/layout/Wrapper'
-import { quizSettings } from '../settings'
+import Wrapper from '../../components/layout/Wrapper'
+import { quizSettings } from '../../settings'
+import initialState from './initial-state'
 const { numOfQuestions } = quizSettings
-
-const initialState = {
-  preFetching: false,
-  starting: false,
-  running: false,
-  preFetchedQuestions: [],
-  questions: [],
-  answers: [],
-}
-
-function reducer(state, action) {
-  switch (action.type) {
-    case 'preFetch':
-      return { ...state, preFetching: true }
-    case 'preFetchSuccessful':
-      return {
-        ...state,
-        preFetching: false,
-        preFetchedQuestions: action.payload,
-      }
-    case 'preFetchFailed':
-      return { ...state, preFetching: false }
-    case 'start':
-      return { ...state, starting: true }
-    case 'startSuccessful':
-      return {
-        ...initialState,
-        starting: false,
-        running: true,
-        questions: action.payload,
-      }
-    case 'startFailed':
-      return { ...initialState, starting: false }
-    case 'submitAnswer':
-      return { ...state, answers: [...state.answers, action.payload] }
-    case 'reset':
-      return initialState
-  }
-}
 
 async function fetchQuestions() {
   const url = `https://opentdb.com/api.php?amount=${numOfQuestions}&type=boolean`
