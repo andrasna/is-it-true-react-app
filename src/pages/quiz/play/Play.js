@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { quizSettings } from '../../../settings'
 const { numOfQuestions } = quizSettings
 import { useOutletContext, useNavigate, Navigate } from 'react-router-dom'
-import Button from '../../button/Button'
+import Button from '../../../components/button/Button'
 import styles from './Play.module.css'
 import { decode } from 'html-entities'
 

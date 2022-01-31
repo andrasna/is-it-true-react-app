@@ -1,4 +1,4 @@
-import Link from '../../link/Link'
+import Link from '../../../components/link/Link'
 import { quizSettings } from '../../../settings.js'
 import styles from './Intro.module.css'
 import { useOutletContext } from 'react-router-dom'

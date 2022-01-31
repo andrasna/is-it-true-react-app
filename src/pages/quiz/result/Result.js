@@ -1,5 +1,5 @@
 import { useOutletContext, Navigate } from 'react-router-dom'
-import Link from '../../link/Link'
+import Link from '../../../components/link/Link'
 import styles from './Result.module.css'
 import { decode } from 'html-entities'
 import { useEffect } from 'react'
