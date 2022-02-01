@@ -13,7 +13,7 @@ function Result() {
   }
 
   const correctAnswers = questions.map((el) => el.correct_answer)
-  const scores = correctAnswers.map((el, i) => (el === answers[i] ? 1 : 0))
+  const scores = answers.map((el, i) => (el === correctAnswers[i] ? 1 : 0))
   const scoresSum = scores.reduce((acc, el) => acc + el, 0)
   const scoreToEmoji = (score) => (score === 0 ? <>&#10006;</> : <>&#10004;</>)
 
